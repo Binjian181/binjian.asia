@@ -48,7 +48,7 @@ The daily hand-curated "精读" deep-read is the distinct edge — human selecti
 - `templates/` (base.html, news_page.html, daily.html, daily_detail.html, articles_page.html, discussion_page.html).
 - `css/common.css`, `js/common.js`.
 - Crawler scripts in `/home/ubuntu/` (fetch_news.py, process_original_articles.py, rebuild_pages.py, daily_people_article_push_v3.py, batch_generate_daily.py, fix_daily_lead_paragraphs.py).
-- Author: 张彬健 (Binjian). Site: https://binjian.cloud.
+- Author: 张彬健 (Binjian). Site: https://binjian.asia.
 - Absent: no `DESIGN.md` yet (incumbent visual system is undocumented); no `PRODUCT.md` before this file.
 
 ## Product Principles

@@ -180,7 +180,7 @@ def main():
     print(f"✅ 批量处理完成！")
     print(f"   成功：{success_count} 篇")
     print(f"   失败：{fail_count} 篇")
-    print(f"🌐 访问地址：https://binjian.cloud/daily.html")
+    print(f"🌐 访问地址：https://binjian.asia/daily.html")
     print("=" * 70)
 
 

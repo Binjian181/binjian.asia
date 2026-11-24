@@ -2,7 +2,7 @@
 
 <!-- impeccable:design-schema 1 · world=monyun-zhuyin seed=c0368a31 -->
 
-> Visual world for binjian.cloud, written from the built surface (not before it). Replaces the
+> Visual world for binjian.asia, written from the built surface (not before it). Replaces the
 > incumbent indigo→purple→orange→pink gradient system.
 
 ## World

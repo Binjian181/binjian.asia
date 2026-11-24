@@ -8,7 +8,7 @@ import shutil
 import sys
 
 SITE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DOMAIN = os.environ.get('SITE_DOMAIN', 'binjian.cloud')
+DOMAIN = os.environ.get('SITE_DOMAIN', 'binjian.asia')
 
 # 顶层目录白名单：出现在这里的目录才会被发布
 INCLUDE_DIRS = {'css', 'js', 'img', 'images', 'fonts', 'icons',

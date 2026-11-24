@@ -1,8 +1,8 @@
-# binjian.cloud - 个人主页
+# binjian.asia - 个人主页
 
 这是我的个人主页，一个轻量级静态网站，集成了自动爬取资讯和原创文章管理功能。
 
-🔗 在线访问：[https://binjian.cloud](https://binjian.cloud)
+🔗 在线访问：[https://binjian.asia](https://binjian.asia)
 
 ## 📋 项目概述
 
@@ -229,7 +229,7 @@ python scripts/fetch_news.py     # 抓取 + 重建页面
 ### GitHub Pages 设置
 
 - Source：Deploy from a branch → 分支 `gh-pages`、目录 `/ (root)`
-- Custom domain：`binjian.cloud`（由发布目录里的 `CNAME` 声明）
+- Custom domain：`binjian.asia`（由发布目录里的 `CNAME` 声明）
 - Enforce HTTPS：证书签发后勾选。证书由 GitHub 自动申请，DNS 生效后通常几十分钟内签发，
   官方口径最长 24 小时；若长时间未签发，可在 Settings → Pages 移除再重填自定义域名来强制触发。
 
@@ -253,7 +253,7 @@ GitHub 官方推荐 4 个 A / 4 个 AAAA 做冗余，但 DNSPod 免费套餐限�
 
 ## 📧 联系方式
 
-- 网站：[https://binjian.cloud](https://binjian.cloud)
+- 网站：[https://binjian.asia](https://binjian.asia)
 - 作者：张彬健 (Binjian)
 
 ## 📄 许可证

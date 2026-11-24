@@ -41,7 +41,7 @@ ARTICLE_TEMPLATE = '''<!DOCTYPE html>
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="{title}">
     <meta name="twitter:description" content="{description}">
-    <link rel="canonical" href="https://binjian.cloud{url}">
+    <link rel="canonical" href="https://binjian.asia{url}">
     <title>{title} - 张彬健</title>
     <link rel="icon" href="/icons.png" type="image/png">
     <link rel="stylesheet" href="/css/common.css?v=20260922b">

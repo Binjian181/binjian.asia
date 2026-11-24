@@ -861,7 +861,7 @@ def main():
     print("\n" + "=" * 70)
     print(f"✅ 完成时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 70)
-    print(f"\n🌐 访问地址：https://binjian.cloud/daily.html")
+    print(f"\n🌐 访问地址：https://binjian.asia/daily.html")
 
 if __name__ == '__main__':
     main()
