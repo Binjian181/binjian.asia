@@ -44,7 +44,8 @@ ARTICLE_TEMPLATE = '''<!DOCTYPE html>
     <link rel="canonical" href="https://binjian.asia{url}">
     <title>{title} - 张彬健</title>
     <link rel="icon" href="/icons.png" type="image/png">
-    <link rel="stylesheet" href="/css/common.css?v=20260922b">
+    <script>/* theme-boot */try{var d=document.documentElement,t=localStorage.getItem('theme'),p=localStorage.getItem('palette');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);if(p&&['xuanzhi','qingjian','songyan','piaoxiang','sujian'].indexOf(p)>-1)d.setAttribute('data-palette',p);}catch(e){}</script>
+    <link rel="stylesheet" href="/css/common.css?v=20261125">
     <!-- JSON-LD 结构化数据 -->
     <script type="application/ld+json">
     {{
@@ -124,7 +125,7 @@ ARTICLE_TEMPLATE = '''<!DOCTYPE html>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
     </button>
 
-    <script src="/js/common.js"></script>
+    <script src="/js/common.js?v=20261125"></script>
     <script>
         // 回到顶部按钮
         const backToTop = document.getElementById('backToTop');

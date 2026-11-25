@@ -27,11 +27,11 @@ The daily hand-curated "精读" deep-read is the distinct edge — human selecti
 - Python crawler (fetch_news.py, process_original_articles.py, rebuild_pages.py, etc.) + MySQL + Jinja2 templates render static HTML, served by Nginx.
 - Crawler runs every 3h via crontab; `rebuild_pages.py` regenerates list/detail pages from the DB on each run.
 - Design changes MUST live in `templates/` and `css/common.css`. Generated HTML (`index.html`, `tech-news.html`, `people-news.html`, `articles.html`, `daily.html`, `article/*`) is overwritten on every rebuild — never edit generated HTML directly or the crawler will clobber it.
-- Theme preference is persisted in localStorage; the site supports dark/light.
+- Theme preference (light/dark + one of five paper palettes) is persisted in localStorage; a 印谱 popover switches both on every page.
 
 ## Capabilities and Constraints
 
-- Confirmed functionality: dark/light theme toggle (persisted), full responsive layout, SEO meta + structured data, infinite scroll (20 items/page), random-jump within article detail, Markdown→HTML for originals.
+- Confirmed functionality: five paper palettes × light/dark (persisted), full responsive layout, SEO meta + structured data, source filtering (tech/people), random-jump within article detail, Markdown→HTML for originals.
 - Technical constraints: pure static at runtime (no backend); the content lifecycle is owned by the crawler + DB; design edits must stay in `templates/` + `css/`.
 - Undecided: specific visual direction — explicitly delegated to design work (see Brand Commitments).
 

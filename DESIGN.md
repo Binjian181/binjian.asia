@@ -37,6 +37,35 @@ AI default.
 Gradients are removed everywhere; `--accent-gradient` is defined as a flat seal color only for
 backward-compat with inline `var(--accent-gradient)` usages, which now render solid.
 
+## Palette variants · 五套纸色（2026-11-25）
+
+主题拆成两个正交维度：`data-theme`（light / dark）与 `data-palette`（纸色）。无 `data-palette`
+时即默认的 宣纸·朱砂；五套共用同一套组件、印章语法与来源签，只换纸面、墨色与单一实色印色，
+不引入第二强调色，也不回退到被否决的渐变主题。
+
+| `data-palette` | 名称 | 亮色 纸 / 印 | 暗色 纸 / 印 | 气质 |
+|---|---|---|---|---|
+| *(默认)* | 宣纸·朱砂 | `#f3ecdd` / `#b1342b` | `#16130d` / `#d9543f` | 原世界，暖纸朱批 |
+| `qingjian` | 青笺·石青 | `#e7edf0` / `#2c5c79` | `#0f151a` / `#7ba6c4` | 冷纸、清冷 |
+| `songyan` | 松烟·墨绿 | `#ecefe8` / `#33523d` | `#111510` / `#86a98b` | 灰绿、沉静 |
+| `piaoxiang` | 缥缃·藤黄 | `#f1ead3` / `#836011` | `#16120a` / `#d1a54c` | 书帙装帧、温润 |
+| `sujian` | 素笺·松墨 | `#efede8` / `#3b352c` | `#131211` / `#b8ae9c` | 无彩、最安静 |
+
+- 对比度：正文/纸面 13.4–14.8:1；次要文字 5.3–8.4:1；印面文字（`--on-seal`）亮色 5.4–8.7:1、
+  暗色 4.67–8.18:1。每套亮色用白字压印、暗色用纸色字压亮印，与既有 `--on-seal` 约定一致。
+- `nav-btn.active`、今日朱印徽标、页码圆章、回顶/随机跳转按钮统一改用 `var(--on-seal)`，
+  不再写死白色——否则亮印纸色（青笺、素笺暗色）上的白字会失守 4.5:1。
+- 来源签与数据分级色保持语义固定，不随纸色变化（人民网签仍随 `--seal` 走，维持“权威红=印章色”）。
+- 切换入口：点导航/顶栏「主题」打开「印谱」小面板——上排明暗（跟随系统 / 亮 / 暗），下排五枚
+  纸色签。纸色签样本固定画亮色纸面与印色，不随当前明暗翻转，便于横向比较。
+- 实现：令牌分别写在 `:root[data-palette=…]:not([data-theme="dark"])`、
+  `@media (prefers-color-scheme: dark)` 内的 `:root:not([data-theme="light"])[data-palette=…]`
+  与 `[data-theme="dark"][data-palette=…]` 三处；`js/common.js` 的 `PaletteManager` /
+  `ThemePanel` 管理 `localStorage.palette`，面板按触发按钮定位、点外部/滚动/Esc 关闭。
+- 首屏：`<head>` 内的 `theme-boot` 内联脚本（由 `scripts/add_cache_version.py` 注入全部页面与
+  模板）在样式表之前恢复明暗与纸色，避免闪一下默认纸面。
+- 打印：`@media print` 仍强制白纸黑字，纸色选择不影响导出。
+
 ### Source-tag harmonized palette (印学)
 Per-source chips keep recognizable distinct hues but are muted into the world: 人民网 → 朱砂
 `--seal`; 少数派/sspai → 石青 `#3f5d7a`; 36氪 → 石绿 `#2f6f5b`; 澎湃 → 暖灰 `#6f6757`;
@@ -131,3 +160,12 @@ crawler-regenerated) is restyled inline to match.
   and `.article-source` has no base background, so a missing rule = an invisible chip). All 190
   pages + templates + `ARTICLE_TEMPLATE` now point at `?v=20260922b`;
   **every `css/common.css` edit must bump the version via `/home/ubuntu/add_cache_version.py`**.
+
+- Refinement (2026-11-25, v5.x · 五套纸色): theme split into `data-theme` × `data-palette`.
+  Added 青笺·石青 / 松烟·墨绿 / 缥缃·藤黄 / 素笺·松墨 alongside 宣纸·朱砂, each with light/dark
+  token sets; switcher is the 印谱 popover on every page (drawn by `js/common.js`, so existing
+  generated detail pages get it without re-render). White-on-seal hardcodes (`nav-btn.active`,
+  `today-badge`, `para-num`, back-to-top, `random-jump-btn`) replaced with `--on-seal`; the
+  人民网 chip keeps its own dark override. All pages + templates + `ARTICLE_TEMPLATE` bumped to
+  `?v=20261125` and now carry a `theme-boot` inline script before the stylesheet
+  (`python scripts/add_cache_version.py` in the repo, replacing the old `/home/ubuntu` tool).
