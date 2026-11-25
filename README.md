@@ -50,7 +50,7 @@
 ## 📁 目录结构
 
 ```
-binjian.cloud/
+binjian.asia/
 ├── index.html                  # 首页（手工维护）
 ├── profile.png / icons.png     # 头像与图标
 ├── css/ js/                    # 静态资源
