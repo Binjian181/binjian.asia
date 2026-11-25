@@ -59,7 +59,7 @@ binjian.asia/
 ├── article/                    # 原创文章详情页（跟踪在 main）
 ├── requirements.txt            # Actions 依赖清单
 ├── .github/workflows/
-│   ├── fetch.yml               # 每 3 小时抓取并发布
+│   ├── fetch.yml               # 定时抓取并发布（配置每 3 小时）
 │   └── daily-push.yml          # 每日时评精读
 └── scripts/
     ├── store.py                # 文件型数据存储（替代 MySQL）
@@ -84,6 +84,11 @@ binjian.asia/
 
 由 `.github/workflows/fetch.yml` 驱动，cron `0 */3 * * *`（UTC，每 3 小时一次），
 也可在 Actions 页面用 "Run workflow" 手动触发。
+
+> ⚠️ GitHub 对公开仓库的定时任务会限流/顺延，实测只触发约三分之一：
+> 2026-11-18 至 11-25 的 8 天里共 21 次（约 2.6 次/天），运行间隔 6–12 小时。
+> 因此列表页上的「最后更新」是**页面生成时刻**（即最近一次运行），不代表最新文章的发布时间；
+> 页面同时展示的「数据最新至」才是内容实际的新鲜度。
 
 **爬取来源**：
 

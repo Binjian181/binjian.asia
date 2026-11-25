@@ -4,7 +4,7 @@
 <main class="main-content">
     <header class="page-header">
         <h1>{{ page_title }}</h1>
-        <div class="update-time">最后更新：{{ update_time }}{% if update_schedule %} | {{ update_schedule }}{% endif %}</div>
+        <div class="update-time">最后更新：{{ update_time }}{% if update_schedule %} | {{ update_schedule }}{% endif %}{% if data_latest %} | 数据最新至：{{ data_latest }}{% endif %}</div>
     </header>
     
     {# 来源显示名：仅影响展示与筛选键，数据库原值不动。键为去掉空格的规范名 #}

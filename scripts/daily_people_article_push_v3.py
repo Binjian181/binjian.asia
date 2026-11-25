@@ -759,11 +759,15 @@ def regenerate_list_page(env: Environment):
     
     # 合并：置顶在前
     sorted_articles = today_articles + other_articles
-    
+
+    dated = [a.get('date', '') for a in articles if a.get('date')]
+    data_latest = max(dated, key=lambda d: parse_date({'date': d})) if dated else ''
+
     list_template = env.get_template('daily.html')
     list_html = list_template.render(
         articles=sorted_articles,
         update_time=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        data_latest=data_latest,
     )
     
     with open(os.path.join(BASE_CONFIG['output_dir'], 'daily.html'), 'w', encoding='utf-8') as f:

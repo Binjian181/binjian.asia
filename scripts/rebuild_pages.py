@@ -72,6 +72,33 @@ def format_date(date_str):
     
     return date_str[:10] if len(date_str) > 10 else date_str
 
+
+def parse_publish_time(value):
+    """把中英文两种发布日期解析成 datetime，无法解析时返回 None。"""
+    s = str(value or '').strip()
+    m = re.match(r'(\d{4})年(\d{1,2})月(\d{1,2})日\s*(\d{1,2}:\d{2})?', s)
+    if not m:
+        m = re.match(r'(\d{4})-(\d{1,2})-(\d{1,2})(?:[ T](\d{1,2}:\d{2}))?', s)
+    if not m:
+        return None
+    year, month, day, hm = m.groups()
+    hour, minute = (int(x) for x in hm.split(':')) if hm else (0, 0)
+    return datetime.datetime(int(year), int(month), int(day), hour, minute)
+
+
+def latest_publish_label(articles):
+    """返回列表中最新一篇的发布时间，用于页面展示数据时效。"""
+    latest = None
+    for item in articles:
+        dt = parse_publish_time(item.get('publish_time'))
+        if dt and (latest is None or dt > latest):
+            latest = dt
+    if not latest:
+        return ''
+    if latest.hour == 0 and latest.minute == 0:
+        return latest.strftime('%Y年%m月%d日')
+    return latest.strftime('%Y年%m月%d日 %H:%M')
+
 PAGE_CONFIGS = {
     'tech': {
         'output_file': 'tech-news.html',
@@ -124,6 +151,7 @@ html = template.render(
     theme_color_secondary=PAGE_CONFIGS['tech']['theme_color_secondary'],
     update_time=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
     update_schedule=PAGE_CONFIGS['tech']['update_schedule'],
+    data_latest=latest_publish_label(unique_tech),
     canonical_path=PAGE_CONFIGS['tech']['canonical_path'],
     CONFIG={
         'articles_per_page': 20
@@ -150,6 +178,7 @@ html = template.render(
     theme_color_secondary=PAGE_CONFIGS['people']['theme_color_secondary'],
     update_time=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
     update_schedule=PAGE_CONFIGS['people']['update_schedule'],
+    data_latest=latest_publish_label(people_articles),
     canonical_path=PAGE_CONFIGS['people']['canonical_path'],
     CONFIG={
         'articles_per_page': 20
@@ -176,6 +205,7 @@ html = template.render(
     theme_color_secondary=PAGE_CONFIGS['original']['theme_color_secondary'],
     update_time=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
     update_schedule=PAGE_CONFIGS['original']['update_schedule'],
+    data_latest=latest_publish_label(original_articles),
     canonical_path=PAGE_CONFIGS['original']['canonical_path'],
     CONFIG={
         'articles_per_page': 20
