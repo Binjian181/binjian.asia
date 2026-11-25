@@ -102,7 +102,8 @@ def latest_publish_label(articles):
 PAGE_CONFIGS = {
     'tech': {
         'output_file': 'tech-news.html',
-        'title': '📱 科技资讯',
+        'title': '科技资讯',
+        'icon': 'smartphone',
         'description': '科技资讯精选 - 少数派、36氪、HelloGitHub 与科技爱好者周刊',
         'theme_color': '#667eea',
         'theme_color_secondary': '#764ba2',
@@ -112,7 +113,8 @@ PAGE_CONFIGS = {
     },
     'people': {
         'output_file': 'people-news.html',
-        'title': '🇨🇳 时政观点',
+        'title': '时政观点',
+        'icon': 'globe',
         'description': '人民网观点频道 - 权威声音，每日更新',
         'theme_color': '#c8102e',
         'theme_color_secondary': '#8b0000',
@@ -122,7 +124,8 @@ PAGE_CONFIGS = {
     },
     'original': {
         'output_file': 'articles.html',
-        'title': '📝 原创文章',
+        'title': '原创文章',
+        'icon': 'file-text',
         'description': 'Binjian 原创文章 - 分享效率工具、知识管理、AI应用与生活感悟',
         'theme_color': '#16a34a',
         'theme_color_secondary': '#047857',
@@ -165,6 +168,7 @@ html = template.render(
     page_title=PAGE_CONFIGS['tech']['title'],
     page_description=PAGE_CONFIGS['tech']['description'],
     page_type=PAGE_CONFIGS['tech']['page_type'],
+    page_icon=PAGE_CONFIGS['tech']['icon'],
     theme_color=PAGE_CONFIGS['tech']['theme_color'],
     theme_color_secondary=PAGE_CONFIGS['tech']['theme_color_secondary'],
     update_time=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
@@ -192,6 +196,7 @@ html = template.render(
     page_title=PAGE_CONFIGS['people']['title'],
     page_description=PAGE_CONFIGS['people']['description'],
     page_type=PAGE_CONFIGS['people']['page_type'],
+    page_icon=PAGE_CONFIGS['people']['icon'],
     theme_color=PAGE_CONFIGS['people']['theme_color'],
     theme_color_secondary=PAGE_CONFIGS['people']['theme_color_secondary'],
     update_time=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
@@ -219,6 +224,7 @@ html = template.render(
     page_title=PAGE_CONFIGS['original']['title'],
     page_description=PAGE_CONFIGS['original']['description'],
     page_type=PAGE_CONFIGS['original']['page_type'],
+    page_icon=PAGE_CONFIGS['original']['icon'],
     theme_color=PAGE_CONFIGS['original']['theme_color'],
     theme_color_secondary=PAGE_CONFIGS['original']['theme_color_secondary'],
     update_time=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),

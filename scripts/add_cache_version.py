@@ -21,7 +21,7 @@ import sys
 from pathlib import Path
 
 SITE = Path(__file__).resolve().parent.parent
-VER = '20261125'
+VER = '20261125b'
 WRITE = '--check' not in sys.argv
 
 BOOT = (

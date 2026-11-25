@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "_icons.html" as icons %}
 
 {% block content %}
 {# 来源显示名：仅影响展示与筛选键，数据库原值不动。键为去掉空格的规范名 #}
@@ -17,9 +18,9 @@
             {% endif %}
         </div>
         <div class="article-meta">
-            <span>🕒 {{ article.time }}</span>
+            <span>{{ icons.icon('clock', 'meta-icon', 14) }}{{ article.time }}</span>
             {% if article.author %}
-            <span>✍️ {{ article.author | e }}</span>
+            <span>{{ icons.icon('pen', 'meta-icon', 14) }}{{ article.author | e }}</span>
             {% endif %}
         </div>
         {% if article.summary %}
@@ -28,10 +29,10 @@
         {% if (article.like_count or article.comment_count) and article.source != '澎湃' %}
         <div class="article-stats">
             {% if article.like_count > 0 %}
-            <span>👍 {{ article.like_count }}</span>
+            <span>{{ icons.icon('thumbs-up', 'stat-icon', 12) }}{{ article.like_count }}</span>
             {% endif %}
             {% if article.comment_count > 0 %}
-            <span>💬 {{ article.comment_count }}</span>
+            <span>{{ icons.icon('message', 'stat-icon', 12) }}{{ article.comment_count }}</span>
             {% endif %}
         </div>
         {% endif %}
@@ -41,7 +42,7 @@
 
 <main class="main-content">
     <header class="page-header">
-        <h1>{{ page_title }}</h1>
+        <h1>{{ icons.icon(page_icon | default('file-text'), 'page-icon', 28) }}<span>{{ page_title }}</span></h1>
         <div class="update-time">最后更新：{{ update_time }}{% if update_schedule %} | {{ update_schedule }}{% endif %}{% if data_latest %} | 数据最新至：{{ data_latest }}{% endif %}</div>
     </header>
 

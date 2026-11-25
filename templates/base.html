@@ -1,3 +1,4 @@
+{% import "_icons.html" as icons %}
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -12,10 +13,11 @@
     <title>{{ page_title }}</title>
     <link rel="icon" href="/icons.png" type="image/png">
     <script>/* theme-boot */try{var d=document.documentElement,t=localStorage.getItem('theme'),p=localStorage.getItem('palette');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);if(p&&['xuanzhi','qingjian','songyan','piaoxiang','sujian'].indexOf(p)>-1)d.setAttribute('data-palette',p);}catch(e){}</script>
-    <link rel="stylesheet" href="/css/common.css?v=20261125">
+    <link rel="stylesheet" href="/css/common.css?v=20261125b">
     {% block extra_css %}{% endblock %}
 </head>
 <body>
+    {{ icons.sprite() }}
     <!-- impeccable:world=monyun-zhuyin seed=c0368a31 · 墨韵·朱印 · 宣纸/墨黑/朱砂，拒绝渐变 slop -->
     <!-- 移动端顶部栏 -->
     <div class="top-bar" id="topBar">
@@ -32,11 +34,11 @@
         <!-- 统一导航栏 -->
         <div class="nav-sidebar" id="navSidebar">
             <nav class="nav-bar" aria-label="主导航">
-                <a href="/" class="nav-btn{% if page_type == 'home' %} active{% endif %}">🏠 返回主页</a>
-                <a href="/people-news.html" class="nav-btn{% if page_type == 'people' %} active{% endif %}">🇨🇳 时政观点</a>
-                <a href="/tech-news.html" class="nav-btn{% if page_type == 'tech' %} active{% endif %}">📱 科技资讯</a>
-                <a href="/daily.html" class="nav-btn{% if page_type == 'daily' %} active{% endif %}">📖 时评精读</a>
-                <a href="/articles.html" class="nav-btn{% if page_type == 'articles' %} active{% endif %}">📝 原创文章</a>
+                <a href="/" class="nav-btn{% if page_type == 'home' %} active{% endif %}">{{ icons.icon('home', 'nav-icon', 17) }}返回主页</a>
+                <a href="/people-news.html" class="nav-btn{% if page_type == 'people' %} active{% endif %}">{{ icons.icon('globe', 'nav-icon', 17) }}时政观点</a>
+                <a href="/tech-news.html" class="nav-btn{% if page_type == 'tech' %} active{% endif %}">{{ icons.icon('smartphone', 'nav-icon', 17) }}科技资讯</a>
+                <a href="/daily.html" class="nav-btn{% if page_type == 'daily' %} active{% endif %}">{{ icons.icon('book-open', 'nav-icon', 17) }}时评精读</a>
+                <a href="/articles.html" class="nav-btn{% if page_type == 'articles' %} active{% endif %}">{{ icons.icon('file-text', 'nav-icon', 17) }}原创文章</a>
                 <button class="theme-toggle" id="themeToggle" title="切换主题" aria-label="切换主题" aria-pressed="false">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
                     <span class="theme-text">主题</span>
@@ -47,7 +49,7 @@
         {% block content %}{% endblock %}
     </div>
 
-    <script src="/js/common.js?v=20261125"></script>
+    <script src="/js/common.js?v=20261125b"></script>
     {% block extra_js %}{% endblock %}
 </body>
 </html>

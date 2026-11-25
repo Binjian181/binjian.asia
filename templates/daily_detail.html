@@ -1,3 +1,4 @@
+{% import "_icons.html" as icons %}
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -18,7 +19,7 @@
     <title>{{ title }}</title>
     <link rel="icon" href="/icons.png" type="image/png">
     <script>/* theme-boot */try{var d=document.documentElement,t=localStorage.getItem('theme'),p=localStorage.getItem('palette');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);if(p&&['xuanzhi','qingjian','songyan','piaoxiang','sujian'].indexOf(p)>-1)d.setAttribute('data-palette',p);}catch(e){}</script>
-    <link rel="stylesheet" href="/css/common.css?v=20261125">
+    <link rel="stylesheet" href="/css/common.css?v=20261125b">
     <!-- JSON-LD 结构化数据 -->
     <script type="application/ld+json">
     {
@@ -38,6 +39,7 @@
 
 </head>
 <body>
+    {{ icons.sprite() }}
     <!-- impeccable:world=monyun-zhuyin seed=c0368a31 · 墨韵·朱印 · 宣纸/墨黑/朱砂，拒绝渐变 slop -->
     <!-- 移动端顶部栏 -->
     <div class="top-bar" id="topBar">
@@ -54,11 +56,11 @@
         <!-- 统一导航栏 -->
         <div class="nav-sidebar" id="navSidebar">
             <nav class="nav-bar" aria-label="主导航">
-                <a href="/" class="nav-btn">🏠 返回主页</a>
-                <a href="/people-news.html" class="nav-btn">🇨🇳 时政观点</a>
-                <a href="/tech-news.html" class="nav-btn">📱 科技资讯</a>
-                <a href="/daily.html" class="nav-btn active">📖 时评精读</a>
-                <a href="/articles.html" class="nav-btn">📝 原创文章</a>
+                <a href="/" class="nav-btn">{{ icons.icon('home', 'nav-icon', 17) }}返回主页</a>
+                <a href="/people-news.html" class="nav-btn">{{ icons.icon('globe', 'nav-icon', 17) }}时政观点</a>
+                <a href="/tech-news.html" class="nav-btn">{{ icons.icon('smartphone', 'nav-icon', 17) }}科技资讯</a>
+                <a href="/daily.html" class="nav-btn active">{{ icons.icon('book-open', 'nav-icon', 17) }}时评精读</a>
+                <a href="/articles.html" class="nav-btn">{{ icons.icon('file-text', 'nav-icon', 17) }}原创文章</a>
                 <button class="theme-toggle" id="themeToggle" title="切换主题" aria-label="切换主题" aria-pressed="false">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
                     <span class="theme-text">主题</span>
@@ -77,18 +79,18 @@
     <header class="article-header">
         <h1 class="article-title">{{ title }}</h1>
         <div class="article-meta">
-            <span>📅 {{ date }}</span>
-            <span>🔗 <a href="{{ original_url }}">原文链接</a></span>
+            <span>{{ icons.icon('calendar', 'meta-icon', 14) }}{{ date }}</span>
+            <span>{{ icons.icon('link', 'meta-icon', 14) }}<a href="{{ original_url }}">原文链接</a></span>
         </div>
     </header>
 
     <!-- 正文全文 -->
     <section class="content-section article-fulltext">
-        <h2>📄 正文全文</h2>
+        <h2>{{ icons.icon('file', 'section-icon', 20) }}<span>正文全文</span></h2>
         <div class="fulltext-content">
             {% if has_lead %}
             <div class="lead-paragraph">
-                <div class="lead-label">📌 导语</div>
+                <div class="lead-label">{{ icons.icon('pin', 'label-icon', 12) }}导语</div>
                 {{ lead_text | safe }}
             </div>
             {% endif %}
@@ -114,10 +116,10 @@
     <!-- 文章数据统计 -->
     {% if overall.stats %}
     <section class="content-section">
-        <h2>📊 文章数据</h2>
+        <h2>{{ icons.icon('chart', 'section-icon', 20) }}<span>文章数据</span></h2>
         <div class="stats-badges">
-            <span class="stat-badge">📝 总字数：<strong>{{ overall.stats.total_words }}</strong></span>
-            <span class="stat-badge">📄 总段落数：<strong>{{ overall.stats.total_paras }}</strong></span>
+            <span class="stat-badge">{{ icons.icon('file-text', 'meta-icon', 14) }}总字数：<strong>{{ overall.stats.total_words }}</strong></span>
+            <span class="stat-badge">{{ icons.icon('file', 'meta-icon', 14) }}总段落数：<strong>{{ overall.stats.total_paras }}</strong></span>
         </div>
     </section>
     {% endif %}
@@ -132,7 +134,7 @@
 
     </div>
 
-    <script src="/js/common.js?v=20261125"></script>
+    <script src="/js/common.js?v=20261125b"></script>
 
 <script>
 function backToTop() {

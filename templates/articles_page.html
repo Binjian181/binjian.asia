@@ -1,9 +1,10 @@
 {% extends "base.html" %}
+{% import "_icons.html" as icons %}
 
 {% block content %}
 <main class="main-content">
     <header class="page-header">
-        <h1>📝 原创文章</h1>
+        <h1>{{ icons.icon('file-text', 'page-icon', 28) }}<span>原创文章</span></h1>
         <div class="update-time">最后更新：{{ update_time }}{% if data_latest %} | 数据最新至：{{ data_latest }}{% endif %}</div>
     </header>
     
@@ -15,8 +16,8 @@
                 <span class="article-source source-original">{{ article.tag | default('原创') }}</span>
             </div>
             <div class="article-meta">
-                <span>🕒 {{ article.time }}</span>
-                <span>✍️ {{ article.author | default('Binjian') | e }}</span>
+                <span>{{ icons.icon('clock', 'meta-icon', 14) }}{{ article.time }}</span>
+                <span>{{ icons.icon('pen', 'meta-icon', 14) }}{{ article.author | default('Binjian') | e }}</span>
             </div>
             <p class="article-summary">{{ article.summary | e }}</p>
         </article>

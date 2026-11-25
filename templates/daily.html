@@ -1,3 +1,4 @@
+{% import "_icons.html" as icons %}
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -18,7 +19,7 @@
     <title>时评精读</title>
     <link rel="icon" href="/icons.png" type="image/png">
     <script>/* theme-boot */try{var d=document.documentElement,t=localStorage.getItem('theme'),p=localStorage.getItem('palette');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);if(p&&['xuanzhi','qingjian','songyan','piaoxiang','sujian'].indexOf(p)>-1)d.setAttribute('data-palette',p);}catch(e){}</script>
-    <link rel="stylesheet" href="/css/common.css?v=20261125">
+    <link rel="stylesheet" href="/css/common.css?v=20261125b">
     <!-- JSON-LD 结构化数据 -->
     <script type="application/ld+json">
     {
@@ -34,6 +35,7 @@
 
 </head>
 <body>
+    {{ icons.sprite() }}
     <!-- impeccable:world=monyun-zhuyin seed=c0368a31 · 墨韵·朱印 · 宣纸/墨黑/朱砂，拒绝渐变 slop -->
     <!-- 移动端顶部栏 -->
     <div class="top-bar" id="topBar">
@@ -50,11 +52,11 @@
         <!-- 统一导航栏 -->
         <div class="nav-sidebar" id="navSidebar">
             <nav class="nav-bar" aria-label="主导航">
-                <a href="/" class="nav-btn">🏠 返回主页</a>
-                <a href="/people-news.html" class="nav-btn">🇨🇳 时政观点</a>
-                <a href="/tech-news.html" class="nav-btn">📱 科技资讯</a>
-                <a href="/daily.html" class="nav-btn active">📖 时评精读</a>
-                <a href="/articles.html" class="nav-btn">📝 原创文章</a>
+                <a href="/" class="nav-btn">{{ icons.icon('home', 'nav-icon', 17) }}返回主页</a>
+                <a href="/people-news.html" class="nav-btn">{{ icons.icon('globe', 'nav-icon', 17) }}时政观点</a>
+                <a href="/tech-news.html" class="nav-btn">{{ icons.icon('smartphone', 'nav-icon', 17) }}科技资讯</a>
+                <a href="/daily.html" class="nav-btn active">{{ icons.icon('book-open', 'nav-icon', 17) }}时评精读</a>
+                <a href="/articles.html" class="nav-btn">{{ icons.icon('file-text', 'nav-icon', 17) }}原创文章</a>
                 <button class="theme-toggle" id="themeToggle" title="切换主题" aria-label="切换主题" aria-pressed="false">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
                     <span class="theme-text">主题</span>
@@ -64,7 +66,7 @@
 
 <main class="main-content">
     <header class="page-header">
-        <h1>📖 时评精读</h1>
+        <h1>{{ icons.icon('book-open', 'page-icon', 28) }}<span>时评精读</span></h1>
         <div class="update-time">最后更新：{{ update_time }} | 每日更新{% if data_latest %} | 数据最新至：{{ data_latest }}{% endif %}</div>
     </header>
 
@@ -74,15 +76,15 @@
                 <article class="article-card{% if article.is_today %} is-today{% endif %}">
                     <div class="article-header">
                         <h2 class="article-title">{{ article.date }} - {{ article.title }}</h2>
-                        {% if article.is_today %}<span class="today-badge">📌 今日更新</span>{% endif %}
+                        {% if article.is_today %}<span class="today-badge">{{ icons.icon('pin', 'badge-icon', 12) }}今日更新</span>{% endif %}
                     </div>
                     <div class="article-meta">
-                        <span>📅 {{ article.date }}</span>
+                        <span>{{ icons.icon('calendar', 'meta-icon', 14) }}{{ article.date }}</span>
                         {% if article.word_count %}
-                        <span>📝 {{ article.word_count }} 字</span>
+                        <span>{{ icons.icon('file-text', 'meta-icon', 14) }}{{ article.word_count }} 字</span>
                         {% endif %}
                         {% if article.para_count %}
-                        <span>📊 {{ article.para_count }} 段</span>
+                        <span>{{ icons.icon('chart', 'meta-icon', 14) }}{{ article.para_count }} 段</span>
                         {% endif %}
                     </div>
                     {% if article.summary %}
@@ -100,7 +102,7 @@
 
     </div>
 
-    <script src="/js/common.js?v=20261125"></script>
+    <script src="/js/common.js?v=20261125b"></script>
 
 </body>
 </html>

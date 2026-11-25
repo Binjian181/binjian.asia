@@ -45,7 +45,7 @@ ARTICLE_TEMPLATE = '''<!DOCTYPE html>
     <title>{title} - 张彬健</title>
     <link rel="icon" href="/icons.png" type="image/png">
     <script>/* theme-boot */try{var d=document.documentElement,t=localStorage.getItem('theme'),p=localStorage.getItem('palette');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);if(p&&['xuanzhi','qingjian','songyan','piaoxiang','sujian'].indexOf(p)>-1)d.setAttribute('data-palette',p);}catch(e){}</script>
-    <link rel="stylesheet" href="/css/common.css?v=20261125">
+    <link rel="stylesheet" href="/css/common.css?v=20261125b">
     <!-- JSON-LD 结构化数据 -->
     <script type="application/ld+json">
     {{
@@ -65,6 +65,7 @@ ARTICLE_TEMPLATE = '''<!DOCTYPE html>
 
 </head>
 <body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false"><symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol><symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol><symbol id="i-smartphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></symbol><symbol id="i-book-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 0 3-3h7z"/></symbol><symbol id="i-file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></symbol><symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol></svg>
     <!-- impeccable:world=monyun-zhuyin seed=c0368a31 · 墨韵·朱印 · 宣纸/墨黑/朱砂，拒绝渐变 slop -->
     <!-- 移动端顶部栏 -->
     <div class="top-bar" id="topBar">
@@ -81,11 +82,11 @@ ARTICLE_TEMPLATE = '''<!DOCTYPE html>
         <!-- 统一导航栏 -->
         <div class="nav-sidebar" id="navSidebar">
             <nav class="nav-bar" aria-label="主导航">
-                <a href="/" class="nav-btn">🏠 返回主页</a>
-                <a href="/people-news.html" class="nav-btn">🇨🇳 时政观点</a>
-                <a href="/tech-news.html" class="nav-btn">📱 科技资讯</a>
-                <a href="/daily.html" class="nav-btn">📖 时评精读</a>
-                <a href="/articles.html" class="nav-btn active">📝 原创文章</a>
+                <a href="/" class="nav-btn"><svg class="nav-icon" width="17" height="17" aria-hidden="true" focusable="false"><use href="#i-home"></use></svg>返回主页</a>
+                <a href="/people-news.html" class="nav-btn"><svg class="nav-icon" width="17" height="17" aria-hidden="true" focusable="false"><use href="#i-globe"></use></svg>时政观点</a>
+                <a href="/tech-news.html" class="nav-btn"><svg class="nav-icon" width="17" height="17" aria-hidden="true" focusable="false"><use href="#i-smartphone"></use></svg>科技资讯</a>
+                <a href="/daily.html" class="nav-btn"><svg class="nav-icon" width="17" height="17" aria-hidden="true" focusable="false"><use href="#i-book-open"></use></svg>时评精读</a>
+                <a href="/articles.html" class="nav-btn active"><svg class="nav-icon" width="17" height="17" aria-hidden="true" focusable="false"><use href="#i-file-text"></use></svg>原创文章</a>
                 <button class="theme-toggle" id="themeToggle" title="切换主题" aria-label="切换主题" aria-pressed="false">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
                     <span class="theme-text">主题</span>
@@ -109,7 +110,7 @@ ARTICLE_TEMPLATE = '''<!DOCTYPE html>
     <header class="article-header">
         <h1 class="article-title">{title}</h1>
         <div class="article-meta">
-            <span>🕒 {date}</span>
+            <span><svg class="meta-icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-clock"></use></svg>{date}</span>
         </div>
     </header>
     
@@ -125,7 +126,7 @@ ARTICLE_TEMPLATE = '''<!DOCTYPE html>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
     </button>
 
-    <script src="/js/common.js?v=20261125"></script>
+    <script src="/js/common.js?v=20261125b"></script>
     <script>
         // 回到顶部按钮
         const backToTop = document.getElementById('backToTop');

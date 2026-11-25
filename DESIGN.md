@@ -169,3 +169,19 @@ crawler-regenerated) is restyled inline to match.
   人民网 chip keeps its own dark override. All pages + templates + `ARTICLE_TEMPLATE` bumped to
   `?v=20261125` and now carry a `theme-boot` inline script before the stylesheet
   (`python scripts/add_cache_version.py` in the repo, replacing the old `/home/ubuntu` tool).
+
+- Refinement (2026-11-25, v5.x · 统一线性图标 + 主页栅格): every UI emoji was replaced by one
+  stroke-icon set (24 viewBox, stroke 2, round caps/joins, `currentColor`), sourced from
+  `templates/_icons.html` for Jinja pages and a static 17-symbol sprite in `index.html` /
+  `ARTICLE_TEMPLATE` / the 258 already-generated detail pages. Pages carry the sprite once and
+  reference `<use href="#i-…">` per element — inline copies per card had inflated tech-news to
+  1.4 MB raw. Section identity is echoed in the page header icon (globe/smartphone/book-open/
+  file-text, seal color); UI copy no longer contains emoji. Icon sizes live in `common.css`
+  (`.nav-btn svg` 17, `.meta-icon` 14, `.section-icon` 20, `.label-icon` 12, `.stat-badge
+  .meta-icon` 12) so stale `width`/`height` attributes on pre-existing generated pages cannot
+  shrink them. Homepage: new `.home-header` masthead (印-style 彬 seal + wordmark + tagline)
+  matching the section `page-header` language; quick-entry grid goes 4-across at ≥1200 (container
+  widened to 1200 to match `.container`), 2×2 below, and compact horizontal rows at ≤520 so all
+  four boards fit a phone viewport; sidebar no longer stretches full height
+  (`align-items: flex-start`). 琥珀 card ground darkened `#b07a2a → #8a5f1c` to restore 5.62:1
+  white-on-amber. Cache bumped to `?v=20261125b`.

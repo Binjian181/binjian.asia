@@ -498,6 +498,83 @@ a {
     color: var(--on-seal);
 }
 
+/* ========== 统一线性图标 ========== */
+/* 全站同一套 24 viewBox / stroke 2 图标，尺寸由场景决定；不再用 emoji 充当符号 */
+.nav-btn svg {
+    width: 17px;
+    height: 17px;
+    flex: none;
+}
+
+.theme-toggle svg {
+    width: 18px;
+    height: 18px;
+    flex: none;
+}
+
+.page-header h1 svg {
+    color: var(--seal);
+    flex: none;
+}
+
+.article-meta > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.article-stats > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.meta-icon {
+    width: 14px;
+    height: 14px;
+    flex: none;
+    opacity: 0.75;
+}
+
+.section-icon {
+    width: 20px;
+    height: 20px;
+    flex: none;
+}
+
+.label-icon {
+    width: 12px;
+    height: 12px;
+    flex: none;
+}
+
+.stat-badge .meta-icon {
+    width: 12px;
+    height: 12px;
+}
+
+.today-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.content-section h2 svg {
+    flex: none;
+}
+
+.article-fulltext .lead-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.coming-soon-icon svg {
+    width: 56px;
+    height: 56px;
+    color: var(--seal);
+}
+
 /* ========== 主题切换按钮 ========== */
 .theme-toggle {
     background: none;
@@ -1135,13 +1212,58 @@ process_original_articles.py 的 ARTICLE_TEMPLATE / templates/discussion_page.ht
 .home-container {
     flex: 1;
     /* 原为 1200px 三列（200 + 1fr + 300）；右侧栏移除后按 876px 定宽 + auto 外边距居中，
-       使「左栏 + 中间内容」整体居中。中间内容宽度与改版前一致。 */
+       使「左栏 + 中间内容」整体居中。中间内容宽度与改版前一致。
+       视口 ≥1200px 时放宽到与板块页 .container 同宽，四个板块一行排开。 */
     width: 876px;
     max-width: calc(100% - 40px);
     margin: 24px auto;
     display: flex;
     justify-content: center;
+    align-items: flex-start;
     gap: 24px;
+}
+
+/* ---- 首页题头 ---- */
+.home-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-top: 3px solid var(--seal);
+    border-radius: 4px;
+    box-shadow: 0 1px 0 var(--rule);
+}
+
+.home-seal {
+    width: 44px;
+    height: 44px;
+    flex: none;
+    display: grid;
+    place-items: center;
+    background: var(--seal);
+    color: var(--on-seal);
+    border-radius: 3px;
+    font-family: var(--font-serif);
+    font-size: 24px;
+    line-height: 1;
+}
+
+.home-header h1 {
+    font-family: var(--font-serif);
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    margin-bottom: 4px;
+}
+
+.home-tagline {
+    font-size: 14px;
+    color: var(--muted-text);
+    letter-spacing: 0.04em;
 }
 
 .sidebar-left {
@@ -1215,17 +1337,20 @@ process_original_articles.py 的 ARTICLE_TEMPLATE / templates/discussion_page.ht
 
 .quick-entry {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
     margin-bottom: 16px;
 }
 
 .quick-card {
-    border-radius: 6px;
-    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    border-radius: 4px;
+    padding: 22px 24px;
     color: white;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
     text-decoration: none;
     box-shadow: 0 2px 12px var(--shadow-color);
 }
@@ -1235,6 +1360,12 @@ process_original_articles.py 的 ARTICLE_TEMPLATE / templates/discussion_page.ht
     box-shadow: 0 8px 24px var(--shadow-color);
 }
 
+.quick-card:focus-visible {
+    outline: 2px solid var(--seal);
+    outline-offset: 3px;
+}
+
+/* 板块语义色：与来源签同源。藤黄压暗到 #8a5f1c，白字 5.62:1（原 #b07a2a 仅 3.71:1） */
 .quick-card-red {
     background: #b1342b;
 }
@@ -1248,12 +1379,22 @@ process_original_articles.py 的 ARTICLE_TEMPLATE / templates/discussion_page.ht
 }
 
 .quick-card-amber {
-    background: #b07a2a;
+    background: #8a5f1c;
 }
 
 .quick-card-icon {
-    font-size: 28px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    line-height: 0;
+}
+
+.quick-card-icon svg {
+    width: 26px;
+    height: 26px;
+    display: block;
+}
+
+.quick-card-body {
+    min-width: 0;
 }
 
 .quick-card-title {
@@ -1264,6 +1405,7 @@ process_original_articles.py 的 ARTICLE_TEMPLATE / templates/discussion_page.ht
 
 .quick-card-desc {
     font-size: 14px;
+    line-height: 1.5;
     opacity: 0.9;
 }
 
@@ -1774,6 +1916,21 @@ process_original_articles.py 的 ARTICLE_TEMPLATE / templates/discussion_page.ht
 }
 
 /* ========== 响应式设计 ========== */
+/* 宽屏：首页与板块页同宽，四个板块单行排开 */
+@media (min-width: 1200px) {
+    .home-container {
+        width: 1200px;
+    }
+
+    .content-main {
+        flex: 1 1 auto;
+    }
+
+    .quick-entry {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
 @media (max-width: 1024px) {
     .nav-sidebar {
         display: none;
@@ -1847,8 +2004,34 @@ process_original_articles.py 的 ARTICLE_TEMPLATE / templates/discussion_page.ht
         width: 100%;
     }
 
+    .home-header {
+        padding: 20px 22px;
+    }
+
+    .home-header h1 {
+        font-size: 26px;
+    }
+
+    .page-header h1 svg {
+        width: 24px;
+        height: 24px;
+    }
+
     .quick-entry {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .quick-card {
+        padding: 18px;
+    }
+
+    .quick-card-title {
+        font-size: 17px;
+    }
+
+    .quick-card-desc {
+        font-size: 13px;
     }
 
     .sidebar-left.open {
@@ -1928,6 +2111,59 @@ process_original_articles.py 的 ARTICLE_TEMPLATE / templates/discussion_page.ht
     .source-filter[data-overflow][data-at-end] {
         -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 16px, #000 100%);
         mask-image: linear-gradient(90deg, transparent 0, #000 16px, #000 100%);
+    }
+}
+
+/* 窄屏手机：四个板块收成横向条目，一屏可览 */
+@media (max-width: 520px) {
+    .home-header {
+        gap: 14px;
+        padding: 18px 20px;
+        margin-bottom: 16px;
+    }
+
+    .home-seal {
+        width: 38px;
+        height: 38px;
+        font-size: 20px;
+    }
+
+    .home-header h1 {
+        font-size: 24px;
+    }
+
+    .home-tagline {
+        font-size: 13px;
+    }
+
+    .quick-entry {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .quick-card {
+        flex-direction: row;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 16px;
+    }
+
+    .quick-card-icon {
+        margin-bottom: 0;
+    }
+
+    .quick-card-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .quick-card-title {
+        font-size: 16px;
+        margin-bottom: 2px;
+    }
+
+    .quick-card-desc {
+        font-size: 13px;
     }
 }
 
