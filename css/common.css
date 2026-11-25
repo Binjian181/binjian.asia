@@ -312,6 +312,29 @@ a {
     gap: 18px;
 }
 
+/* 科技页置顶周刊：与下方信息流用界栏短线分隔 */
+.pinned-section {
+    margin-bottom: 34px;
+}
+
+.pinned-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--muted-text);
+}
+
+.pinned-heading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-color);
+}
+
 .article-link {
     text-decoration: none;
     color: inherit;
@@ -450,6 +473,17 @@ a {
     color: var(--seal);
 }
 
+/* HelloGitHub · 缃褐；科技爱好者周刊 · 靛蓝 */
+.source-hellogithub, .source-HelloGitHub {
+    background-color: #8c6b2f;
+    color: #f3ecdd;
+}
+
+.source-科技爱好者周刊 {
+    background-color: #465a8c;
+    color: #f3ecdd;
+}
+
 [data-theme="dark"] .source-sspai, [data-theme="dark"] .source-少数派 {
     /* 由 #5a7da0 提亮：墨字对比 4.30 → 5.06，达到 4.5:1 底线 */
     background-color: #6689ac;
@@ -480,6 +514,16 @@ a {
 [data-theme="dark"] .source-original {
     /* 暗色下 --seal 字压在 seal-soft 底上仅 3.95:1（tint 加深最多只到 4.33），故提亮字色至 5.5:1 */
     color: #e9795f;
+}
+
+[data-theme="dark"] .source-hellogithub, [data-theme="dark"] .source-HelloGitHub {
+    background-color: #b08d4a;
+    color: #16130d;
+}
+
+[data-theme="dark"] .source-科技爱好者周刊 {
+    background-color: #6d82b8;
+    color: #16130d;
 }
 
 /* ========== 来源筛选栏 · 朱印签 ========== */
