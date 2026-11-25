@@ -103,7 +103,7 @@ PAGE_CONFIGS = {
     'tech': {
         'output_file': 'tech-news.html',
         'title': '📱 科技资讯',
-        'description': '科技资讯精选 - 来自少数派、36氪的最新科技文章',
+        'description': '科技资讯精选 - 少数派、36氪、HelloGitHub 与科技爱好者周刊',
         'theme_color': '#667eea',
         'theme_color_secondary': '#764ba2',
         'update_schedule': '每日更新',
@@ -135,15 +135,33 @@ PAGE_CONFIGS = {
 ALL_ARTICLES = store.load_articles()
 generator = Environment(loader=FileSystemLoader(CONFIG['templates_dir']), autoescape=True)
 
-# 科技资讯页面
-unique_tech = store.latest(ALL_ARTICLES, 'tech')
-for item in unique_tech:
+# 科技资讯页面（tech 与 weekly 合并展示；weekly 为 HelloGitHub 月刊和科技爱好者周刊）
+# 新闻量远大于周刊，按时间排序会把周刊挤出渲染窗口，因此各源最新几期单独置顶
+WEEKLY_SOURCES = ('HelloGitHub', '科技爱好者周刊')
+PINNED_PER_SOURCE = 3
+
+pinned = []
+for source in WEEKLY_SOURCES:
+    items = [a for a in ALL_ARTICLES
+             if a.get('page_type') == 'weekly' and a.get('source') == source]
+    items.sort(key=store.sort_key, reverse=True)
+    pinned.extend(items[:PINNED_PER_SOURCE])
+pinned.sort(key=store.sort_key, reverse=True)
+pinned_urls = {a['url'] for a in pinned}
+
+tech_pool = [a for a in ALL_ARTICLES
+             if a.get('page_type') == 'tech'
+             or (a.get('page_type') == 'weekly' and a['url'] not in pinned_urls)]
+tech_pool.sort(key=store.sort_key, reverse=True)
+unique_tech = tech_pool[:1000]
+for item in pinned + unique_tech:
     item['time'] = format_date(item['publish_time'])
     item['summary'] = truncate_summary(item.get('summary', ''))
 
 template = generator.get_template('news_page.html')
 html = template.render(
     articles=unique_tech,
+    pinned=pinned,
     page_title=PAGE_CONFIGS['tech']['title'],
     page_description=PAGE_CONFIGS['tech']['description'],
     page_type=PAGE_CONFIGS['tech']['page_type'],
@@ -151,7 +169,7 @@ html = template.render(
     theme_color_secondary=PAGE_CONFIGS['tech']['theme_color_secondary'],
     update_time=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
     update_schedule=PAGE_CONFIGS['tech']['update_schedule'],
-    data_latest=latest_publish_label(unique_tech),
+    data_latest=latest_publish_label(pinned + unique_tech),
     canonical_path=PAGE_CONFIGS['tech']['canonical_path'],
     CONFIG={
         'articles_per_page': 20

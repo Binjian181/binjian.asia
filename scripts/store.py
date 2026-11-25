@@ -16,7 +16,7 @@ ARTICLES_FILE = os.path.join(DATA_DIR, 'articles.jsonl')
 URLS_FILE = os.path.join(DATA_DIR, 'seen_urls.txt')
 
 # 每类文章保留的上限，只需覆盖列表页展示窗口
-KEEP_LIMIT = {'tech': 1500, 'people': 3000, 'original': 500}
+KEEP_LIMIT = {'tech': 1500, 'people': 3000, 'original': 500, 'weekly': 500}
 
 
 def _ensure_dir():

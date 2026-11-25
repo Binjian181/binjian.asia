@@ -658,13 +658,24 @@ def main():
     if people_articles:
         saved_count = save_to_database(people_articles, 'people')
         print(f"💾 成功入库：{saved_count} 篇时政观点")
-    
+
+    # 抓取推荐周刊（HelloGitHub 月刊 + 科技爱好者周刊），以摘要 + 外链并入科技资讯
+    print("\n📚 正在抓取推荐周刊...")
+    print("-" * 60)
+    weekly_new_count = 0
+    try:
+        from fetch_weeklies import fetch_weeklies
+        weekly_new_count = fetch_weeklies()
+    except Exception as e:
+        print(f"⚠️  推荐周刊抓取异常：{e}")
+
     # 统计信息
     print("\n" + "=" * 60)
     print("📈 本次爬取统计:")
     print(f"   科技资讯：爬取 {len(tech_articles)} 篇")
     print(f"   时政观点：爬取 {len(people_articles)} 篇")
-    print(f"   总计：{len(tech_articles) + len(people_articles)} 篇")
+    print(f"   推荐周刊：新增 {weekly_new_count} 期")
+    print(f"   总计：{len(tech_articles) + len(people_articles) + weekly_new_count} 篇")
     print("=" * 60)
     
     # 处理原创文章
@@ -697,7 +708,7 @@ def main():
     print("=" * 60)
     
     # 自动触发页面重建（如果有新文章）
-    total_new = len(tech_articles) + len(people_articles) + original_new_count
+    total_new = len(tech_articles) + len(people_articles) + weekly_new_count + original_new_count
     if total_new > 0:
         print("\n🔄 正在自动重建页面...")
         try:

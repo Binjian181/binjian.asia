@@ -1,15 +1,51 @@
 {% extends "base.html" %}
 
 {% block content %}
+{# 来源显示名：仅影响展示与筛选键，数据库原值不动。键为去掉空格的规范名 #}
+{% set source_labels = {'36氪': '36 氪', '浙江宣传': '浙宣'} %}
+{% set pinned_items = pinned if pinned is defined and pinned else [] %}
+{% set all_cards = pinned_items + articles %}
+
+{% macro article_card(article) %}
+<a href="{{ article.url }}" rel="noopener noreferrer" class="article-link" data-source="{{ article.source | replace(' ', '') }}">
+    <article class="article-card">
+        <div class="article-header">
+            <h2 class="article-title">{{ article.title | e }}</h2>
+            {% if article.source %}
+            {% set src_key = article.source | replace(' ', '') | lower %}
+            <span class="article-source source-{{ src_key }}"> {{ source_labels.get(src_key, article.source) }}</span>
+            {% endif %}
+        </div>
+        <div class="article-meta">
+            <span>🕒 {{ article.time }}</span>
+            {% if article.author %}
+            <span>✍️ {{ article.author | e }}</span>
+            {% endif %}
+        </div>
+        {% if article.summary %}
+        <p class="article-summary">{{ article.summary | e }}</p>
+        {% endif %}
+        {% if (article.like_count or article.comment_count) and article.source != '澎湃' %}
+        <div class="article-stats">
+            {% if article.like_count > 0 %}
+            <span>👍 {{ article.like_count }}</span>
+            {% endif %}
+            {% if article.comment_count > 0 %}
+            <span>💬 {{ article.comment_count }}</span>
+            {% endif %}
+        </div>
+        {% endif %}
+    </article>
+</a>
+{% endmacro %}
+
 <main class="main-content">
     <header class="page-header">
         <h1>{{ page_title }}</h1>
         <div class="update-time">最后更新：{{ update_time }}{% if update_schedule %} | {{ update_schedule }}{% endif %}{% if data_latest %} | 数据最新至：{{ data_latest }}{% endif %}</div>
     </header>
-    
-    {# 来源显示名：仅影响展示与筛选键，数据库原值不动。键为去掉空格的规范名 #}
-    {% set source_labels = {'36氪': '36 氪', '浙江宣传': '浙宣'} %}
-    {% set source_list = articles | map(attribute='source') | reject('none') | unique | list %}
+
+    {% set source_list = all_cards | map(attribute='source') | reject('none') | unique | list %}
     {% if source_list | length > 1 %}
     <div class="source-filter" id="sourceFilter" role="group" aria-label="按来源筛选">
         <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">全部</button>
@@ -90,39 +126,21 @@
     </script>
     {% endif %}
 
+    {% if pinned_items %}
+    <section class="pinned-section">
+        <h2 class="pinned-heading">精选周刊</h2>
+        <div class="article-list">
+            {% for article in pinned_items %}
+            {{ article_card(article) }}
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
     <div class="article-list">
         {% if articles %}
             {% for article in articles %}
-            <a href="{{ article.url }}" rel="noopener noreferrer" class="article-link" data-source="{{ article.source | replace(' ', '') }}">
-                <article class="article-card">
-                    <div class="article-header">
-                        <h2 class="article-title">{{ article.title | e }}</h2>
-                        {% if article.source %}
-                        {% set src_key = article.source | replace(' ', '') | lower %}
-                        <span class="article-source source-{{ src_key }}"> {{ source_labels.get(src_key, article.source) }}</span>
-                        {% endif %}
-                    </div>
-                    <div class="article-meta">
-                        <span>🕒 {{ article.time }}</span>
-                        {% if article.author %}
-                        <span>✍️ {{ article.author | e }}</span>
-                        {% endif %}
-                    </div>
-                    {% if article.summary %}
-                    <p class="article-summary">{{ article.summary | e }}</p>
-                    {% endif %}
-                    {% if (article.like_count or article.comment_count) and article.source != '澎湃' %}
-                    <div class="article-stats">
-                        {% if article.like_count > 0 %}
-                        <span>👍 {{ article.like_count }}</span>
-                        {% endif %}
-                        {% if article.comment_count > 0 %}
-                        <span>💬 {{ article.comment_count }}</span>
-                        {% endif %}
-                    </div>
-                    {% endif %}
-                </article>
-            </a>
+            {{ article_card(article) }}
             {% endfor %}
         {% else %}
         <div class="empty-state">

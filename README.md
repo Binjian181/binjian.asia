@@ -11,7 +11,7 @@
 内容分为五大板块：
 
 - **🏠 首页** - 个人介绍和导航
-- **📱 科技资讯** - 自动爬取少数派、36氪、澎湃新闻的最新科技文章
+- **📱 科技资讯** - 自动爬取少数派、36氪、澎湃新闻的最新科技文章，并收录 HelloGitHub 月刊与科技爱好者周刊（摘要 + 外链）
 - **🇨🇳 时政观点** - 自动爬取人民网观点频道、浙江宣传的权威评论
 - **📝 原创文章** - 我的原创文章，通过 Markdown 编写自动转换为 HTML
 - **📖 时评精读** - 每日精选人民时评，逐段 AI 精读后存档
@@ -64,6 +64,7 @@ binjian.asia/
 └── scripts/
     ├── store.py                # 文件型数据存储（替代 MySQL）
     ├── fetch_news.py           # 爬虫主流程
+    ├── fetch_weeklies.py       # HelloGitHub / 科技爱好者周刊（摘要 + 外链）
     ├── rebuild_pages.py        # 重建全部列表页（含 daily.html）
     ├── process_original_articles.py
     ├── daily_people_article_push_v3.py
@@ -97,6 +98,8 @@ binjian.asia/
 | 少数派 | 科技资讯 | 官方 API，自带点赞和评论数 |
 | 36氪 | 科技资讯 | RSS |
 | 澎湃新闻 | 科技资讯 | 科技频道列表 + 详情页 |
+| HelloGitHub | 科技资讯 | 月刊，每月 28 号发布，读取 GitHub 仓库 Markdown |
+| 科技爱好者周刊 | 科技资讯 | 阮一峰周刊，每周五发布，读取 GitHub 仓库 Markdown |
 | 人民网观点频道 | 时政观点 | 爬取列表后进入详情页提取摘要 |
 | 浙江宣传 | 时政观点 | 公众号文章列表 |
 
@@ -166,9 +169,9 @@ binjian.asia/
 | author | 作者 |
 | like_count / comment_count | 点赞数 / 评论数 |
 | score | 排序分数（用于加权排序） |
-| page_type | 页面类型：tech / people / original |
+| page_type | 页面类型：tech / people / original / weekly |
 
-保留上限在 `scripts/store.py` 的 `KEEP_LIMIT` 中设置（tech 1500、people 3000、original 500），
+保留上限在 `scripts/store.py` 的 `KEEP_LIMIT` 中设置（tech 1500、people 3000、original 500、weekly 500），
 覆盖列表页的展示窗口，因此数据文件体积稳定，不随时间增长。
 迁移时已按此窗口裁剪，更早的历史文章不再保留在仓库中；`seen_urls.txt` 仍保留全部历史 URL，
 所以被裁掉的文章不会被重新抓回来。
