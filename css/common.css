@@ -7,6 +7,7 @@ seed c0368a31 noted, *             set aside on factual grounds. *   FINISH   �
 this build ends with the finish review, *             the verdict, DESIGN.md, and every shipping raster carrying its provenance. */
 /* ========== CSS 变量定义 ========== */
 :root {
+    color-scheme: light;
     /* 亮色模式 · 宣纸暖白 */
     --bg-color: #f3ecdd;
     /* 宣纸 paper ground */
@@ -63,6 +64,7 @@ this build ends with the finish review, *             the verdict, DESIGN.md, an
 /* 暗色模式 - 跟随系统（夜色暖黑，非冷蓝） */
 @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
+        color-scheme: dark;
         --bg-color: #16130d;
         --text-color: #ece1cf;
         --card-bg: #1f1a12;
@@ -94,6 +96,7 @@ this build ends with the finish review, *             the verdict, DESIGN.md, an
 
 /* 暗色模式 - 手动切换 */
 [data-theme="dark"] {
+    color-scheme: dark;
     --bg-color: #16130d;
     --text-color: #ece1cf;
     --card-bg: #1f1a12;
@@ -120,6 +123,251 @@ this build ends with the finish review, *             the verdict, DESIGN.md, an
     --ref-th-bg:         #242825;
     --ref-th-text:       #eceae5;
     --ref-th-border:     #3a3f3b;
+}
+
+/* ========== 纸色调色板 ==========
+   与明暗正交：data-palette 换纸色与印色，data-theme 换明暗。
+   无 data-palette 时即上方默认的 宣纸·朱砂。
+   每套都只动纸面、墨色与单一实色印章，不引入第二强调色，也不回退到渐变。 */
+
+/* 青笺 · 石青（冷纸 + 石青印） */
+:root[data-palette="qingjian"]:not([data-theme="dark"]) {
+    color-scheme: light;
+    --bg-color: #e7edf0;
+    --text-color: #1a2429;
+    --card-bg: #f4f8fa;
+    --border-color: #cbd7dd;
+    --secondary-text: #4e616c;
+    --muted-text: #7d8f99;
+    --shadow-color: rgba(26, 36, 41, 0.08);
+    --accent-color: #2c5c79;
+    --accent-gradient: #2c5c79;
+    --seal: #2c5c79;
+    --on-seal: #fff;
+    --seal-soft: rgba(44, 92, 121, 0.12);
+    --rule: rgba(26, 36, 41, 0.14);
+    --seal-shadow: rgba(44, 92, 121, 0.30);
+    --seal-shadow-hover: rgba(44, 92, 121, 0.40);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"])[data-palette="qingjian"] {
+        color-scheme: dark;
+        --bg-color: #0f151a;
+        --text-color: #dde7ed;
+        --card-bg: #161f25;
+        --border-color: #27353f;
+        --secondary-text: #9db0bc;
+        --muted-text: #71838e;
+        --shadow-color: rgba(0, 0, 0, 0.5);
+        --accent-color: #7ba6c4;
+        --accent-gradient: #7ba6c4;
+        --seal: #7ba6c4;
+        --on-seal: #0f151a;
+        --seal-soft: rgba(123, 166, 196, 0.18);
+        --rule: rgba(221, 231, 237, 0.16);
+        --seal-shadow: rgba(123, 166, 196, 0.30);
+        --seal-shadow-hover: rgba(123, 166, 196, 0.40);
+    }
+}
+
+[data-theme="dark"][data-palette="qingjian"] {
+    color-scheme: dark;
+    --bg-color: #0f151a;
+    --text-color: #dde7ed;
+    --card-bg: #161f25;
+    --border-color: #27353f;
+    --secondary-text: #9db0bc;
+    --muted-text: #71838e;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --accent-color: #7ba6c4;
+    --accent-gradient: #7ba6c4;
+    --seal: #7ba6c4;
+    --on-seal: #0f151a;
+    --seal-soft: rgba(123, 166, 196, 0.18);
+    --rule: rgba(221, 231, 237, 0.16);
+    --seal-shadow: rgba(123, 166, 196, 0.30);
+    --seal-shadow-hover: rgba(123, 166, 196, 0.40);
+}
+
+/* 松烟 · 墨绿（灰绿纸 + 松烟绿印） */
+:root[data-palette="songyan"]:not([data-theme="dark"]) {
+    color-scheme: light;
+    --bg-color: #ecefe8;
+    --text-color: #1d241c;
+    --card-bg: #f7f9f3;
+    --border-color: #d2d8ca;
+    --secondary-text: #525e4e;
+    --muted-text: #818b7b;
+    --shadow-color: rgba(29, 36, 28, 0.08);
+    --accent-color: #33523d;
+    --accent-gradient: #33523d;
+    --seal: #33523d;
+    --on-seal: #fff;
+    --seal-soft: rgba(51, 82, 61, 0.12);
+    --rule: rgba(29, 36, 28, 0.14);
+    --seal-shadow: rgba(51, 82, 61, 0.30);
+    --seal-shadow-hover: rgba(51, 82, 61, 0.40);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"])[data-palette="songyan"] {
+        color-scheme: dark;
+        --bg-color: #111510;
+        --text-color: #e2e8db;
+        --card-bg: #181e17;
+        --border-color: #2b342a;
+        --secondary-text: #a7b3a0;
+        --muted-text: #7b8774;
+        --shadow-color: rgba(0, 0, 0, 0.5);
+        --accent-color: #86a98b;
+        --accent-gradient: #86a98b;
+        --seal: #86a98b;
+        --on-seal: #111510;
+        --seal-soft: rgba(134, 169, 139, 0.18);
+        --rule: rgba(226, 232, 219, 0.16);
+        --seal-shadow: rgba(134, 169, 139, 0.30);
+        --seal-shadow-hover: rgba(134, 169, 139, 0.40);
+    }
+}
+
+[data-theme="dark"][data-palette="songyan"] {
+    color-scheme: dark;
+    --bg-color: #111510;
+    --text-color: #e2e8db;
+    --card-bg: #181e17;
+    --border-color: #2b342a;
+    --secondary-text: #a7b3a0;
+    --muted-text: #7b8774;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --accent-color: #86a98b;
+    --accent-gradient: #86a98b;
+    --seal: #86a98b;
+    --on-seal: #111510;
+    --seal-soft: rgba(134, 169, 139, 0.18);
+    --rule: rgba(226, 232, 219, 0.16);
+    --seal-shadow: rgba(134, 169, 139, 0.30);
+    --seal-shadow-hover: rgba(134, 169, 139, 0.40);
+}
+
+/* 缥缃 · 藤黄（缃纸 + 藤黄褐印，书帙装帧色） */
+:root[data-palette="piaoxiang"]:not([data-theme="dark"]) {
+    color-scheme: light;
+    --bg-color: #f1ead3;
+    --text-color: #241f13;
+    --card-bg: #faf5e3;
+    --border-color: #dbd1b2;
+    --secondary-text: #5d553f;
+    --muted-text: #8b8168;
+    --shadow-color: rgba(36, 31, 19, 0.08);
+    --accent-color: #836011;
+    --accent-gradient: #836011;
+    --seal: #836011;
+    --on-seal: #fff;
+    --seal-soft: rgba(131, 96, 17, 0.13);
+    --rule: rgba(36, 31, 19, 0.14);
+    --seal-shadow: rgba(131, 96, 17, 0.30);
+    --seal-shadow-hover: rgba(131, 96, 17, 0.40);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"])[data-palette="piaoxiang"] {
+        color-scheme: dark;
+        --bg-color: #16120a;
+        --text-color: #ece2c9;
+        --card-bg: #1f1a0f;
+        --border-color: #37301c;
+        --secondary-text: #b3a783;
+        --muted-text: #8b7f65;
+        --shadow-color: rgba(0, 0, 0, 0.5);
+        --accent-color: #d1a54c;
+        --accent-gradient: #d1a54c;
+        --seal: #d1a54c;
+        --on-seal: #16120a;
+        --seal-soft: rgba(209, 165, 76, 0.18);
+        --rule: rgba(236, 226, 201, 0.16);
+        --seal-shadow: rgba(209, 165, 76, 0.30);
+        --seal-shadow-hover: rgba(209, 165, 76, 0.40);
+    }
+}
+
+[data-theme="dark"][data-palette="piaoxiang"] {
+    color-scheme: dark;
+    --bg-color: #16120a;
+    --text-color: #ece2c9;
+    --card-bg: #1f1a0f;
+    --border-color: #37301c;
+    --secondary-text: #b3a783;
+    --muted-text: #8b7f65;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --accent-color: #d1a54c;
+    --accent-gradient: #d1a54c;
+    --seal: #d1a54c;
+    --on-seal: #16120a;
+    --seal-soft: rgba(209, 165, 76, 0.18);
+    --rule: rgba(236, 226, 201, 0.16);
+    --seal-shadow: rgba(209, 165, 76, 0.30);
+    --seal-shadow-hover: rgba(209, 165, 76, 0.40);
+}
+
+/* 素笺 · 松墨（中和灰纸 + 无彩墨印，最安静的一套） */
+:root[data-palette="sujian"]:not([data-theme="dark"]) {
+    color-scheme: light;
+    --bg-color: #efede8;
+    --text-color: #1f1d1a;
+    --card-bg: #f9f7f2;
+    --border-color: #d9d5cc;
+    --secondary-text: #5c574e;
+    --muted-text: #8c877c;
+    --shadow-color: rgba(31, 29, 26, 0.08);
+    --accent-color: #3b352c;
+    --accent-gradient: #3b352c;
+    --seal: #3b352c;
+    --on-seal: #fff;
+    --seal-soft: rgba(59, 53, 44, 0.10);
+    --rule: rgba(31, 29, 26, 0.14);
+    --seal-shadow: rgba(59, 53, 44, 0.30);
+    --seal-shadow-hover: rgba(59, 53, 44, 0.40);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"])[data-palette="sujian"] {
+        color-scheme: dark;
+        --bg-color: #131211;
+        --text-color: #e7e2d8;
+        --card-bg: #1b1917;
+        --border-color: #302c26;
+        --secondary-text: #b0a99c;
+        --muted-text: #878071;
+        --shadow-color: rgba(0, 0, 0, 0.5);
+        --accent-color: #b8ae9c;
+        --accent-gradient: #b8ae9c;
+        --seal: #b8ae9c;
+        --on-seal: #131211;
+        --seal-soft: rgba(184, 174, 156, 0.16);
+        --rule: rgba(231, 226, 216, 0.16);
+        --seal-shadow: rgba(184, 174, 156, 0.30);
+        --seal-shadow-hover: rgba(184, 174, 156, 0.40);
+    }
+}
+
+[data-theme="dark"][data-palette="sujian"] {
+    color-scheme: dark;
+    --bg-color: #131211;
+    --text-color: #e7e2d8;
+    --card-bg: #1b1917;
+    --border-color: #302c26;
+    --secondary-text: #b0a99c;
+    --muted-text: #878071;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --accent-color: #b8ae9c;
+    --accent-gradient: #b8ae9c;
+    --seal: #b8ae9c;
+    --on-seal: #131211;
+    --seal-soft: rgba(184, 174, 156, 0.16);
+    --rule: rgba(231, 226, 216, 0.16);
+    --seal-shadow: rgba(184, 174, 156, 0.30);
+    --seal-shadow-hover: rgba(184, 174, 156, 0.40);
 }
 
 /* ========== 基础重置 ========== */
@@ -236,7 +484,7 @@ a {
 
 .nav-btn.active {
     background: var(--seal);
-    color: #fff;
+    color: var(--on-seal);
     border-color: var(--seal);
 }
 
@@ -247,7 +495,7 @@ a {
 }
 
 .nav-btn.active:hover {
-    color: #fff;
+    color: var(--on-seal);
 }
 
 /* ========== 主题切换按钮 ========== */
@@ -275,6 +523,143 @@ a {
 .theme-toggle svg, .theme-toggle-mobile svg {
     width: 20px;
     height: 20px;
+}
+
+/* ========== 配色面板 · 印谱 ========== */
+/* 点「主题」弹出：上排明暗（系统/亮/暗），下排五枚纸色签。
+   纸色签画的是各套亮色纸面与印色，样本不随当前明暗翻转，方便直接比较。 */
+.theme-panel {
+    position: fixed;
+    z-index: 1200;
+    width: 288px;
+    max-width: calc(100vw - 24px);
+    padding: 14px 14px 12px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-top: 3px solid var(--seal);
+    border-radius: 4px;
+    box-shadow: 0 12px 34px var(--shadow-color);
+}
+
+.theme-panel[hidden] {
+    display: none;
+}
+
+.theme-panel-title {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-family: var(--font-serif);
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    color: var(--text-color);
+}
+
+.theme-panel-title small {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--muted-text);
+}
+
+.mode-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.mode-btn {
+    flex: 1;
+    padding: 5px 0;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    background: transparent;
+    color: var(--secondary-text);
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.mode-btn:hover {
+    border-color: var(--seal);
+    color: var(--text-color);
+}
+
+.mode-btn.active {
+    background: var(--seal);
+    border-color: var(--seal);
+    color: var(--on-seal);
+}
+
+.palette-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+}
+
+.palette-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 7px 2px 6px;
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    background: transparent;
+    color: var(--secondary-text);
+    font-family: var(--font-serif);
+    font-size: 12px;
+    line-height: 1;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.palette-btn:hover {
+    border-color: var(--seal);
+    color: var(--text-color);
+}
+
+.palette-btn.active {
+    border-color: var(--seal);
+    box-shadow: inset 0 0 0 1px var(--seal);
+    color: var(--text-color);
+}
+
+.mode-btn:focus-visible,
+.palette-btn:focus-visible {
+    outline: 2px solid var(--seal);
+    outline-offset: 1px;
+}
+
+.palette-swatch {
+    position: relative;
+    width: 30px;
+    height: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    background: var(--sw-paper, #f3ecdd);
+}
+
+.palette-swatch::after {
+    content: '';
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+    width: 8px;
+    height: 8px;
+    background: var(--sw-seal, #b1342b);
+}
+
+.palette-btn[data-palette="xuanzhi"] .palette-swatch { --sw-paper: #f3ecdd; --sw-seal: #b1342b; }
+.palette-btn[data-palette="qingjian"] .palette-swatch { --sw-paper: #e7edf0; --sw-seal: #2c5c79; }
+.palette-btn[data-palette="songyan"] .palette-swatch { --sw-paper: #ecefe8; --sw-seal: #33523d; }
+.palette-btn[data-palette="piaoxiang"] .palette-swatch { --sw-paper: #f1ead3; --sw-seal: #836011; }
+.palette-btn[data-palette="sujian"] .palette-swatch { --sw-paper: #efede8; --sw-seal: #3b352c; }
+
+/* 暗色模式下纸色签的描边加深，避免浅纸面在深底上发灰 */
+[data-theme="dark"] .palette-swatch {
+    border-color: rgba(255, 255, 255, 0.18);
 }
 
 /* ========== 页面标题头部 ========== */
@@ -367,7 +752,7 @@ a {
 
 .article-card.is-today .today-badge {
     background: var(--seal);
-    color: #fff;
+    color: var(--on-seal);
     padding: 3px 12px;
     border-radius: 12px;
     font-size: 12px;
@@ -454,7 +839,7 @@ a {
 
 .source-人民网 {
     background-color: var(--seal);
-    color: #fff;
+    color: var(--on-seal);
 }
 
 .source-澎湃 {
@@ -988,7 +1373,7 @@ process_original_articles.py 的 ARTICLE_TEMPLATE / templates/discussion_page.ht
     width: 28px;
     height: 28px;
     background: var(--seal);
-    color: white;
+    color: var(--on-seal);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1149,7 +1534,7 @@ process_original_articles.py 的 ARTICLE_TEMPLATE / templates/discussion_page.ht
     height: 48px;
     /* daily 页与原创页原本分别写 --seal 和 --accent-gradient，二者当前同值，合并取 --seal */
     background: var(--seal);
-    color: white;
+    color: var(--on-seal);
     border: none;
     border-radius: 50%;
     cursor: pointer;
@@ -1334,7 +1719,7 @@ process_original_articles.py 的 ARTICLE_TEMPLATE / templates/discussion_page.ht
 
 .random-jump-btn {
     background: var(--accent-gradient);
-    color: white;
+    color: var(--on-seal);
     border: none;
     padding: 8px 16px;
     border-radius: 6px;
@@ -1691,7 +2076,7 @@ process_original_articles.py 的 ARTICLE_TEMPLATE / templates/discussion_page.ht
     }
 
     /* 隐藏导航、菜单、浮层按钮、返回链接、页脚、首页装饰 */
-    .top-bar, .nav-sidebar, .nav-bar, .menu-toggle, .theme-toggle, .theme-toggle-mobile, .back-to-top, .random-jump-btn, .back-link, .site-footer, footer, .sidebar-left, .quick-entry, .discussion-container, .today-badge, .source-filter {
+    .top-bar, .nav-sidebar, .nav-bar, .menu-toggle, .theme-toggle, .theme-toggle-mobile, .theme-toggle-desktop, .theme-panel, .back-to-top, .random-jump-btn, .back-link, .site-footer, footer, .sidebar-left, .quick-entry, .discussion-container, .today-badge, .source-filter {
         display: none !important;
     }
 
