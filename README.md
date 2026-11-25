@@ -132,7 +132,7 @@ binjian.asia/
 
 流程：取最新一篇未处理的人民时评 → 清洗正文 → 调用阿里云百炼应用逐段精读 →
 生成 `daily/YYYYMMDD_<hash>.html` → 更新 `daily/list.json` 并置顶当日文章 → 走同一条发布流水线。
-未配置 `LLM_API_KEY` 时退回到规则分析。
+未配置 `LLM_API_KEY` 时任务会直接失败退出，没有规则分析兜底。
 
 ### 3. 原创文章处理
 
@@ -241,10 +241,18 @@ python scripts/fetch_news.py     # 抓取 + 重建页面
 
 | Secret | 用途 |
 |--------|------|
-| `LLM_API_KEY` | 调用百炼应用生成时评精读，缺省时脚本退回到规则分析 |
+| `LLM_API_KEY` | 调用百炼应用生成时评精读；缺失时该工作流会失败 |
 
 `GITHUB_TOKEN` 由 Actions 自动提供，两个工作流都已声明 `permissions: contents: write`。
-本地调试若需 AI 精读，把 key 放进 gitignored 的 `.env.local`，不要写进任何跟踪文件。
+
+Secret 保存在 GitHub 仓库设置里，加密存储，保存后无法再查看明文，只能覆盖更新；
+本地调试需要 AI 精读时，用环境变量传入（脚本只认 `LLM_API_KEY`）：
+
+```bash
+export LLM_API_KEY=sk-xxxx   # PowerShell: $env:LLM_API_KEY="sk-xxxx"
+```
+
+不要把 key 写进任何被跟踪的文件；`.env.local` 虽已被 `.gitignore` 忽略，但脚本不会自动读取它。
 
 ### GitHub Pages 设置
 
