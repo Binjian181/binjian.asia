@@ -174,6 +174,7 @@ html = template.render(
     update_time=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
     update_schedule=PAGE_CONFIGS['tech']['update_schedule'],
     data_latest=latest_publish_label(pinned + unique_tech),
+    latest_label='数据截至',
     canonical_path=PAGE_CONFIGS['tech']['canonical_path'],
     CONFIG={
         'articles_per_page': 20
@@ -202,6 +203,7 @@ html = template.render(
     update_time=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
     update_schedule=PAGE_CONFIGS['people']['update_schedule'],
     data_latest=latest_publish_label(people_articles),
+    latest_label='数据截至',
     canonical_path=PAGE_CONFIGS['people']['canonical_path'],
     CONFIG={
         'articles_per_page': 20
@@ -230,6 +232,7 @@ html = template.render(
     update_time=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
     update_schedule=PAGE_CONFIGS['original']['update_schedule'],
     data_latest=latest_publish_label(original_articles),
+    latest_label='最近更新',
     canonical_path=PAGE_CONFIGS['original']['canonical_path'],
     CONFIG={
         'articles_per_page': 20
